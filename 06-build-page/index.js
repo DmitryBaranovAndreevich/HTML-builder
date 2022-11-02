@@ -10,7 +10,7 @@ function callback(err) {
 
 async function innerText(urlReadFile, urlToCopy, fileName) {
   let data = await fsPromises.readFile(urlReadFile, "utf-8");
-  const renameMe = ["{{header}}", "{{articles}}", "{{footer}}"];
+  const renameMe = data.match(/{{.+}}/g);
 
   for (const teg of renameMe) {
     const fileName = teg.replace(/{|}/g, "");
